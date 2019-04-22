@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<page_types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_types.xsd">
+    <type id="mymodule_index_index" label="Module Central Station"/>
+    <type id="mymodule_index_station" label="Module Landing Station"/>
+</page_types>

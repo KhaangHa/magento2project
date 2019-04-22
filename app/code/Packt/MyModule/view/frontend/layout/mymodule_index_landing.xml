@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>TO STATION</title>
+    </head>
+    <body>
+        <remove name="wishlist_sidebar" />
+        <referenceContainer name="content">
+            <block class="Packt\MyModule\Block\LandingStation"
+                   name="reststation" template="Packt_MyModule::station.phtml" />
+        </referenceContainer>
+    </body>
+</page>
