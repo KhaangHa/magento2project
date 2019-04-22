@@ -5,12 +5,12 @@
         <title>TO SPACE</title>
     </head>
     <body>
-        <remove name="wishlist_sidebar" />
-        <referenceContainer name="content">
-            <block class="Packt\MyModule\Block\LandingStation"
-                   name="landingsblock" template="Packt_MyModule::landingstation.phtml" />
-            <block class="Packt\MyModule\Block\LandingStation"
-             name="moonblock" template="Packt_MyModule::moonstation.phtml" />
-        </referenceContainer>
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+            <referenceContainer name="content">
+                <block class="Packt\MyModule\Block\LandingStation"
+                       name="landingsblock" template="Packt_MyModule::landingstation.phtml" />
+                <block class="Packt\MyModule\Block\LandingStation"
+                 name="moonblock" template="Packt_MyModule::moonstation.phtml" />
+            </referenceContainer>
     </body>
 </page>

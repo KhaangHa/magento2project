@@ -5,7 +5,7 @@
         <title>TO STATION</title>
     </head>
     <body>
-        <remove name="wishlist_sidebar" />
+        <referenceBlock name="wishlist_sidebar" remove="true" />
         <referenceContainer name="content">
             <block class="Packt\MyModule\Block\LandingStation"
                    name="reststation" template="Packt_MyModule::station.phtml" />

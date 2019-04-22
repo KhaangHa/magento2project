@@ -12,10 +12,10 @@ class Index extends \Magento\Backend\App\Action
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
-    protected function _isAllowed()
-    {
-        return $this->_authorization->isAllowed('Packt_HelloWorld::index');
-    }
+//    protected function _isAllowed()
+//    {
+//        return $this->_authorization->isAllowed('Packt_HelloWorld::index');
+//    }
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();

@@ -6,7 +6,7 @@
         <title>Helloworld Landingspage</title>
     </head>
     <body>
-        <remove name="wishlist_sidebar"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
         <referenceContainer name="content">
 
             <block class="Packt\HelloWorld\Block\Landingspage"
