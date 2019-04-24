@@ -19,5 +19,23 @@
                 action="helloworld/index/"
                 resource="Packt_HelloWorld::index"
         />
+        <add
+                id="Packt_HelloWorld::subscription"
+                title="Subscriptions"
+                module="Packt_HelloWorld"
+                sortOrder="70"
+                parent="Packt_HelloWorld::helloworld"
+                action="helloworld/subscription/"
+                resource="Packt_HelloWorld::subscription"
+        />
+        <add
+                id="Packt_HelloWorld::component"
+                title="Components"
+                module="Packt_HelloWorld"
+                sortOrder="80"
+                parent="Packt_HelloWorld::helloworld"
+                action="helloworld/component/"
+                resource="Packt_HelloWorld::helloworld"
+        />
     </menu>
 </config>
