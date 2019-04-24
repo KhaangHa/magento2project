@@ -26,6 +26,12 @@
                        showInWebsite="1" showInStore="1">
                     <label>Header title</label>
                 </field>
+                <field id="source_model_test" translate="label" type="select"
+                       sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Source model test</label>
+                    <source_model>Packt\HelloWorld\Model\Config\Source\Relation</source_model>
+                </field>
             </group>
         </section>
     </system>
