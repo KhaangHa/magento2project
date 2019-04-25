@@ -13,7 +13,7 @@ class Landingspage extends Template
 
     public function getRedirectUrl()
     {
-        return $this->getUrl('helloworld/index/redirect');
+        return $this->getUrl('helloworld/index/redirect/');
     }
 
 }

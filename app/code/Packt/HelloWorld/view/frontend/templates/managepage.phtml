@@ -1,0 +1,39 @@
+<form class="form" action="subscription" method="post">
+
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Test Form') ?></span></legend><br>
+        <div class="field required">
+            <label for="number" class="label">
+                <span><?php /* @escapeNotVerified */ echo __('Input') ?></span>
+            </label>
+
+            <div class="control">
+            First name:
+                <input type="text" id="firstname"
+                       name="firstname"
+                       class="input-text">
+                Last name:
+                <input type="text" id="lastname"
+                       name="lastname"
+                       class="input-text">
+                Email:
+                <input type="email" id="email"
+                       name="email"
+                       class="input-text">
+                Message:
+                <input type="text" id="message"
+                       name="message"
+                       class="input-text">
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+
+</form>

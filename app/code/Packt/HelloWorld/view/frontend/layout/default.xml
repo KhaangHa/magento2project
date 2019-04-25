@@ -12,6 +12,7 @@
                               xsi:type="string">helloworld/index/index
                     </argument>
                 </arguments>
+
             </block>
         </referenceBlock>
     </body>
