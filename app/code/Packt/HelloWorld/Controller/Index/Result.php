@@ -31,3 +31,15 @@ class Result extends \Magento\Framework\App\Action\Action
         return $resultPage;
     }
 }
+
+//namespace Packt\HelloWorld\Controller\Index;
+//
+//class Change implements \Magento\Framework\Event\ObserverInterface
+//{
+//    public function execute(\Magento\Framework\Event\Observer $observer)
+//    {
+//        $displayText = $observer->getData('display');
+//        $displayText->setDisplay('Catch magento 2 event successfully!!!');
+//        return $this;
+//    }
+//}

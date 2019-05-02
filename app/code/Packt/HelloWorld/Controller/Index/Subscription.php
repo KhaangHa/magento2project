@@ -15,5 +15,6 @@ class Subscription extends \Magento\Framework\App\Action\Action {
         $subscription->setMessage($Message);
         $subscription->save();
         $this->getResponse()->setBody('success');
+        $this->_redirect('helloworld/index/manage');
     }
 }

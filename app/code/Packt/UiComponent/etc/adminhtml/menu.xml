@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Packt_UiComponent::main_menu" title="Simple News"
+             module="Packt_UiComponent" sortOrder="20"
+             resource="Packt_UiComponent::simplenews" />
+
+        <add id="Packt_UiComponent::add_news" title="Add News"
+             module="Packt_UiComponent" sortOrder="1" parent="Packt_UiComponent::main_menu"
+             action="uicomponent/news/new" resource="Packt_UiComponent::manage_news" />
+
+        <add id="Packt_UiComponent::manage_news" title="Manage News"
+             module="Packt_UiComponent" sortOrder="2" parent="Packt_UiComponent::main_menu"
+             action="uicomponent/news/index" resource="Packt_UiComponent::manage_news" />
+
+        <add id="Packt_UiComponent::configuration" title="Configurations"
+             module="Packt_UiComponent" sortOrder="3" parent="Packt_UiComponent::main_menu"
+             action="adminhtml/system_config/edit/section/simplenews"
+             resource="Packt_UiComponent::configuration" />
+    </menu>
+</config>
