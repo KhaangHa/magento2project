@@ -1,11 +1,13 @@
 <?php
+
 namespace Packt\HelloWorld\Model;
 
 class Subscription extends \Magento\Framework\Model\AbstractModel
 {
-const STATUS_PENDING = 'pending';
-const STATUS_APPROVED = 'approved';
-const STATUS_DECLINED = 'declined';
+    const STATUS_PENDING = 'pending';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_DECLINED = 'declined';
+
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
