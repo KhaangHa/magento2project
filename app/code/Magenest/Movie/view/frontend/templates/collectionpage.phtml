@@ -1,0 +1,60 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+
+            table, td {
+                border: 0.5px dotted grey;
+            }
+
+            th {
+                background-color:#514943;
+                color: white;
+                border: 0.5px solid grey;
+            }
+
+
+    </style>
+</head>
+
+
+<body>
+<h2>Movie collection</h2>
+<?php
+    $container = $this->LoadMyData();
+?>
+<div class="yourtable">
+    <div class="table">
+        <table class="table table-striped">
+            <tr>
+                <th>MOVIE</th>
+                <th>Director</th>
+                <th>Cast</th>
+            </tr>
+            <?php
+
+            foreach($container as $item){
+
+                    ?>
+                <tr>
+                    <td>
+                        <?php echo $item["movie"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $item["director"]; ?>
+                    </td>
+                    <td>
+                        <?php echo $item["actor"]; ?>
+                    </td>
+                </tr>
+            <?php
+            }
+          ?>
+
+        </table>
+    </div>
+
+</div>
+</body>
+
