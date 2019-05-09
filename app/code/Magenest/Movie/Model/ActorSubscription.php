@@ -2,7 +2,7 @@
 
 namespace Magenest\Movie\Model;
 
-class Subscription extends \Magento\Framework\Model\AbstractModel
+class ActorSubscription extends \Magento\Framework\Model\AbstractModel
 {
 
     public function __construct(
@@ -22,6 +22,6 @@ class Subscription extends \Magento\Framework\Model\AbstractModel
     {
         //was this on 8/5
 //        $this->_init('Magenest\Movie\Model\ResourceModel\Subscription');
-        $this->_init('Magenest\Movie\Model\Resource\Director\Subscription');
+        $this->_init('Magenest\Movie\Model\Resource\Actor\Subscription');
     }
 }

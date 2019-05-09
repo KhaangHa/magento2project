@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <salesforce>
+            <moviepage>
+                <text_field>I’m a text field</text_field>
+
+                <is_enabled>1</is_enabled>
+
+                <select_field>1</select_field>
+
+                <row_in_table>3</row_in_table>
+
+                <row_in_table_actor>6</row_in_table_actor>
+
+                <btn_field>Refresh</btn_field>
+            </moviepage>
+        </salesforce>
+    </default>
+</config>
