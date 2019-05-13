@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="500">
+            <label>Magenest</label>
+        </tab>
+        <section id="salesforce" translate="label" type="text"
+                 sortOrder="100" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>SalesforceCRM Config</label>
+            <tab>magenest</tab>
+            <resource>Magenest_Movie::config_movie</resource>
+            <group id="moviepage" translate="label" type="text"
+                   sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Magenest settings</label>
+
+                <field id="text_field" translate="label"
+                       type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Text Field</label>
+                </field>
+
+                <field id="is_enabled" translate="label"
+                       type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>
+                        <![CDATA[
+                            <label>Yes/No_Field_<font style="color:red">abcd</font></label>
+                        ]]>
+                    </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+
+                </field>
+                <field id="select_field" translate="label"
+                       type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Custom Select Field</label>
+                    <source_model>Magenest\Movie\Model\Config\Source\ListMode</source_model>
+                    <comment> <![CDATA[
+<!--                    <script  src="https://code.jquery.com/jquery-3.4.1.js"-->
+<!--			                 integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="-->
+<!--			                 crossorigin="anonymous">-->
+<!--			        </script>-->
+<!--                      <script type='text/javascript'>-->
+
+<!--                        $('#salesforce_moviepage_select_field').change(function(){-->
+<!--                            var sel = document.getElementById('salesforce_moviepage_select_field');-->
+<!--                            var opt = sel.options[sel.selectedIndex];-->
+
+<!--                            if(opt.value == 2)-->
+<!--                                document.getElementById('salesforce_moviepage_row_in_table_actor').setAttribute("disabled","disabled");-->
+
+<!--                            else-->
+<!--                                document.getElementById('salesforce_moviepage_row_in_table_actor').removeAttribute("disabled");-->
+<!--                          });-->
+<!--                    </script>-->
+                        ]]>
+                    </comment>
+                </field>
+                <field id="row_in_table" translate="label"
+                       type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <frontend_model>Magenest\Movie\Block\Adminhtml\Disable</frontend_model>
+                    <label>Rows in table "magenest_movie"</label>
+                </field>
+                <field id="row_in_table_actor" translate="label"
+                       type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Rows in table "magenest_actor"</label>
+                </field>
+                <field id="btn_field" translate="label"
+                       type="button" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <comment>
+                        <![CDATA[
+<!--                    <script  src="https://code.jquery.com/jquery-3.4.1.js"-->
+<!--			                 integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="-->
+<!--			                 crossorigin="anonymous">-->
+<!--			        </script>-->
+<!--                      <script type='text/javascript'>-->
+
+<!--                        $( "#salesforce_moviepage_btn_field" ).click(function() {-->
+<!--                            location.reload(true);-->
+<!--                        });-->
+<!--                    </script>-->
+                        ]]>
+                    </comment>
+                    <label>Button Field</label>
+                </field>
+
+            </group>
+
+        </section>
+        <section id="sociallogin" translate="label" type="text"
+                 sortOrder="110" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Social Login</label>
+            <tab>magenest</tab>
+            <resource>Magenest_Movie::config_movie</resource>
+            <group id="moviepage" translate="label" type="text"
+                   sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Magenest page settings</label>
+                <field id="is_enabled" translate="label"
+                       type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Is Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="header_title" translate="label"
+                       type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Header title</label>
+                </field>
+            </group>
+        </section>
+        <section id="xero" translate="label" type="text"
+                 sortOrder="120" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Xero</label>
+            <tab>magenest</tab>
+            <resource>Magenest_Movie::config_movie</resource>
+            <group id="moviepage" translate="label" type="text"
+                   sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Magenest page settings</label>
+                <field id="is_enabled" translate="label"
+                       type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Is Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="header_title" translate="label"
+                       type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Header title</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

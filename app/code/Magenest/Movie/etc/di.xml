@@ -1,0 +1,37 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="director_data_source" xsi:type="string">Magenest\Movie\Model\Resource\Director\Subscription\Collection</item>
+                <item name="movie_data_source" xsi:type="string">Magenest\Movie\Model\Resource\Movie\Subscription\Collection</item>
+                <item name="actor_data_source" xsi:type="string">Magenest\Movie\Model\Resource\Actor\Subscription\Collection</item>
+            </argument>
+
+        </arguments>
+    </type>
+    <virtualType name="Magenest\Movie\Model\Resource\Director\Subscription\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_director</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\Resource\Director\Subscription</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magenest\Movie\Model\Resource\Movie\Subscription\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_movie</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\Resource\Movie\Subscription</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magenest\Movie\Model\Resource\Actor\Subscription\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_actor</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Movie\Model\Resource\Actor\Subscription</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Config\Model\Config">
+        <plugin name="Magenest_Movie:Config" type="Magenest\Movie\Plugin\ConfigPlugin" sortOrder="1"/>
+    </type>
+    <type name="Magento\Checkout\CustomerData\AbstractItem">
+        <plugin name="Magenest_Movie:Cart" type="Magenest\Movie\Plugin\CartPlugin" sortOrder="10"/>
+    </type>
+</config>

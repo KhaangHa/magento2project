@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>My test</title>
+
+    </head>
+    <body>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceContainer name="content">
+
+            <block class="Magenest\Movie\Block\Hello"
+                   name="landingsblock" template="Magenest_Movie::collectionpage.phtml"/>
+
+        </referenceContainer>
+    </body>
+
+</page>
