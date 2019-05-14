@@ -5,12 +5,10 @@
         <salesforce>
             <moviepage>
 
-
                 <is_enabled>1</is_enabled>
 
                 <select_field>1</select_field>
 
-                <row_in_table>5</row_in_table>
                 <btn_field>Refresh</btn_field>
             </moviepage>
         </salesforce>
