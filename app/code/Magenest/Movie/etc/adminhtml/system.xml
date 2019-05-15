@@ -37,10 +37,8 @@
                 <field id="select_field" translate="label"
                        type="select" sortOrder="30" showInDefault="1"
                        showInWebsite="1" showInStore="1">
-
                     <label>Custom Select Field</label>
                     <source_model>Magenest\Movie\Model\Config\Source\ListMode</source_model>
-<!--                    <frontend_model>Magenest\Movie\Block\Adminhtml\Model\ListField</frontend_model>-->
                 </field>
 
                 <field id="row_in_table" translate="label"
@@ -53,8 +51,10 @@
                 <field id="row_in_table_actor" translate="label"
                        type="text" sortOrder="40" showInDefault="1"
                        showInWebsite="1" showInStore="1">
-<!--                    <frontend_model>Magenest\Movie\Block\Adminhtml\Model\CustomSelectList</frontend_model>-->
                     <backend_model>Magenest\Movie\Block\Adminhtml\SystemActorTable</backend_model>
+                    <depends>
+                        <field id="select_field">1</field>
+                    </depends>
                     <label>Rows in table "magenest_actor"</label>
                 </field>
 
