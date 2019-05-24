@@ -1,0 +1,49 @@
+<section>
+    <div class="admin__page-section-title head-account">
+        <h1 class="title">Module</h1>
+    </div>
+    <div class="admin__page-section-content">
+
+        <fieldset class="fieldset admin__fieldset col-m-5 col-m-push-5">
+            <h3>Detail</h3>
+            <table class="admin__table-primary table-striped">
+                <thead>
+                <tr>
+                    <th class="data-grid-th  no-link col-name">
+                        <span>Customer Request</span>
+                    </th>
+                    <th class="data-grid-th col-total no-link col-orders_sum_amount">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class=" col-name ">Customer</td>
+                    <td class=" col-total col-orders_sum_amount a-right last"><?=$this->getNumCustomer(); ?></td>
+                </tr>
+                <tr>
+                    <td class=" col-name ">Products</td>
+                    <td class=" col-total col-orders_sum_amount a-right last"><?=$this->getNumProduct(); ?></td>
+                </tr>
+                <tr>
+                    <td class=" col-name ">Orders</td>
+                    <td class=" col-total col-orders_sum_amount a-right last"><?=$this->getNumOrder(); ?></td>
+                </tr>
+                <tr>
+                    <td class=" col-name ">Invoices</td>
+                    <td class=" col-total col-orders_sum_amount a-right last"> <?=$this->getNumInvoice(); ?></td>
+                </tr>
+                <tr>
+                    <td class=" col-name ">Creditmemos</td>
+                    <td class=" col-total col-orders_sum_amount a-right last"><?=$this->getNumCreditMemo(); ?></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset class="fieldset admin__fieldset col-m-5 col-m-pull-5">
+            <h3 class="item-title">Addtional Module</h3>
+            <p class="item-content">Number of module: <?php echo $this->getNumModule(); ?></p>
+        </fieldset>
+
+    </div>
+</section>
