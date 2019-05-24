@@ -14,6 +14,7 @@ class ObserveMovie implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $movie = $observer->getData('movie');
-        $observer->setRating(0);
+
+        return $this;
     }
 }

@@ -29,7 +29,6 @@ class SaveMovie extends \Magento\Backend\App\Action
         if ($data) {
             try {
 
-
                 $contact = $this->contactFactory->create();
 
                 $data = array_filter($data, function ($value) {
@@ -40,8 +39,20 @@ class SaveMovie extends \Magento\Backend\App\Action
                     'adminhtml_movie_save_after',
                     ['movie'=>$data]
                 );
-                $data['rating']=0;
+
+                if(isset($data['rating']))
+                {
+                    $num = $data['rating'];
+                    if($num<=0)
+                    {
+                        $this->messageManager->addError(__('Rating must be greater than 0'));
+                        $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
+                        return $resultRedirect->setPath('*/*/newmovie');
+                    }
+                }
+                $data['rating'] = 0;
                 $contact->setData($data);
+
                 $contact->save();
                 $this->messageManager->addSuccess(__('Successfully saved.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
@@ -53,6 +64,6 @@ class SaveMovie extends \Magento\Backend\App\Action
             }
         }
 
-        return $resultRedirect->setPath('*/*/index');
+        return $resultRedirect->setPath('*/*/movie');
     }
 }
