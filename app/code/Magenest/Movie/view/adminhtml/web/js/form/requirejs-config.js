@@ -6,7 +6,8 @@ require(
     function(
         $
     ) {
-        $('input[name=name]').click(()=>{
+        alert('a');
+        $('#save').click(()=>{
             alert('a');
         });
     }
