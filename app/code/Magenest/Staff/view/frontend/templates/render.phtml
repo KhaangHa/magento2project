@@ -1,0 +1,16 @@
+<div id="product-custom-info" data-bind="scope: 'custom-scope'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+{
+  "#product-custom-info": {
+        "Magento_Ui/js/core/app": {
+        "components":{
+          "custom-scope":{
+            "component":"Magenest_Staff/js/customer-data",
+            "myVar" : "My Value"
+          }
+        }
+      }
+  }
+}
+</script>

@@ -1,0 +1,34 @@
+<?php
+    if(isset($_POST["name"]))
+    {
+        if($_POST["name"] != ""){
+            $data = $_POST["name"];
+            $result = $this->getMyData($data);
+        }
+    }
+//?>
+
+<form class="form" action="<?= $block->getUrl('staff/search'); ?>" method="post">
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Search Form') ?></span></legend><br>
+        <div class="field required">
+            <label for="name" class="label"><span><?php /* @escapeNotVerified */ echo __('Input') ?></span></label>
+            <div class="control">
+                <input type="text" id="name" name="name" class="input-text"/>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Search') ?>">
+                <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<div  class="results">
+
+    <?php if(isset($result)){ foreach($result as $key):?>
+        <p><?php echo $key['nick_name']?></p>
+    <?php endforeach;} ?>
+</div>

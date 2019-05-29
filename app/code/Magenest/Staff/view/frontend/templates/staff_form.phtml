@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Account\Dashboard\Info $block */
+?>
+<div class="block block-dashboard-info">
+    <div class="block-title"><strong>Update your profile</strong></div>
+    <div class="block-content">
+        <div class="box box-status">
+            <strong class="box-title">
+                <span>Profile Status</span>
+            </strong>
+            <div class="box-content">
+                <h3><a href="#">WAITING FOR ADMIN TO CONFIRM</a></h3>
+            </div>
+        </div>
+
+        <div class="box box-staff">
+            <strong class="box-title">
+                <span>Staff Type</span>
+            </strong>
+            <form class="form" action="<?= $block->getUrl('staff/result'); ?>" id="frm" method="POST">
+                <label for="name" class="label"><span><?php /* @escapeNotVerified */ echo __('Level') ?></span></label>
+                <div class="control">
+                    <select id="slt" name="level">
+                        <option id="optLv1" value="1">
+                            Lv1
+                        </option>
+                        <option id="optLv2" value="2">
+                            Lv2
+                        </option>
+                    </select>
+                </div>
+
+                <label for="name" class="label"><span><?php /* @escapeNotVerified */ echo __('Nick name') ?></span></label>
+                <div class="control">
+                    <input type="text" id="name" name="name" class="input-text"/>
+                </div>
+
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Search') ?>">
+                            <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $("#frm").submit(() => {
+            var name = $("#name").val();
+            var level = $("#slt").val();
+
+            var url = "<?php echo $block->getBaseUrl().'staff/result' ?>";
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {name:name,level:level},
+                showLoader: true,
+                cache: false
+                success: function(response){
+                    console.log(response.output);
+                }
+            });
+            return false;
+        })
+    });
+</script>

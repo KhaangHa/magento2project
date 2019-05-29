@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_customer_prepare_save">
+        <observer name="customer_save"
+                  instance="Magenest\Staff\Observer\CustomerSaveObserver"/>
+    </event>
+<!--    <event name="catalog_product_load_after">-->
+<!--        <observer name="load_custom_handler" instance="Magenest\Staff\Observer\CustomPrice" />-->
+<!--    </event>-->
+<!--    <event name="catalog_product_collection_load_after">-->
+<!--        <observer name="customprice" instance="Magenest\Staff\Observer\CustomPrice" />-->
+<!--    </event>-->
+</config>
