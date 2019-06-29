@@ -1,0 +1,78 @@
+<?php
+$container = $this->LoadMyData();
+$count = $this->getCountData();
+$customer = $this->getCustomer();
+?>
+
+<div class="admin__page-section-title head-account">
+    <h1 class="title">Magenest Affiliate</h1>
+</div>
+<div>
+    <div class="dashboard-main col-m-8 col-m-push-4">
+        <div class="dashboard-totals" id="dashboard_diagram_totals">
+            <ul class="dashboard-totals-list">
+                <li class="dashboard-totals-item">
+                    <span class="dashboard-totals-label">Total Affiliates</span>
+                    <strong class="dashboard-totals-value">
+                        <span class="price"><?=$count?></span>
+                    </strong>
+                </li>
+                <li class="dashboard-totals-item">
+                    <span class="dashboard-totals-label">Revenue</span>
+                    <strong class="dashboard-totals-value">
+                        <span class="price">$45.00</span>
+                    </strong>
+                </li>
+                <li class="dashboard-totals-item">
+                    <span class="dashboard-totals-label">Commision</span>
+                    <strong class="dashboard-totals-value">
+                        <span class="price">$550</span>
+                    </strong>
+                </li>
+            </ul>
+        </div>
+        <table class="data-grid">
+            <thead>
+            <tr>
+                <th class="data-grid-th">
+                    <span>Affiliate Campaign</span>
+                </th>
+                <th class="data-grid-th col-total no-link col-orders_sum_amount">Description</th>
+                <th class="data-grid-th">Start time</th>
+                <th class="data-grid-th">End time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($container as $item) {
+                ?>
+                <tr>
+                    <td class="data-grid-td"><?php echo $item["name"]; ?></td>
+                    <td class="data-grid-td"><?=$item["description"]?></td>
+                    <td class="data-grid-td"><?=$item["start_time"]?></td>
+                    <td class=" col-total col-orders_sum_amount a-right last"><?=$item["end_time"]?></td>
+
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="dashboard-secondary col-m-4 col-m-pull-8">
+        <h3>Recent Activities</h3>
+                <div class="dashboard-item-content">
+                    <table class="admin__table-secondary" id="lastOrdersGrid_table">
+                        <?php foreach($customer as $key){ ?>
+                        <tr class="_clickable">
+                            <td><span style="font-weight: bold;"><?=$key["type"]?></span></td>
+                            <td><?=$key["description"]; ?></td>
+                        </tr>
+                        <?php } ?>
+
+                    </table>
+                    <span></span>
+                    <span></span>
+                </div>
+    </div>
+</div>

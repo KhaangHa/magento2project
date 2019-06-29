@@ -1,0 +1,104 @@
+<?php /** @var $block \Magenest\Affiliate\Block\Account */ ?>
+    <script>
+        if (typeof(window.magenest) === 'undefined') {
+            window.magenest = {};
+        }
+        if (typeof(window.magenest.affiliate) === 'undefined') {
+            window.magenest.affiliate = {};
+        }
+        window.magenest.affiliate.currentMenu = 1;
+        window.magenest.affiliate.isAffiliate = '<?php echo $block->getIsAffiliate();?>';
+    </script>
+<?php
+
+use Magenest\Affiliate\Helper\Constant;
+
+/**
+ * @var \Magenest\Affiliate\Block\Account $block
+ */
+$dataView = $block->getDataLink();
+$isAffiliate = $dataView['is_affiliate'];
+$joinUrl = $block->getUrl('affiliate/account/joinaffiliate');
+$baseUrl = $block->getUrl();
+$customParam = $block->getConfig()->getCustomParam();
+$allCustomer = $block->getAllCustomer();
+$uplineParam = $block->getRequest()->getParam('id');
+$storedId = null; //save new upline customer id
+
+?>
+<?php if (($isAffiliate) && ($dataView['status'] == Constant::AFFILIATE_CUSTOMER_APPROVED)) : ?>
+    <h1>welcome</h1>
+    <table class="data table table-order-items history" id="affiliate-transaction-table">
+        <tbody>
+        <tr>
+            <th>Your status</th>
+            <td><?php echo Constant::getCustomerAffiliateStatus($dataView['status']) ?></td>
+        </tr>
+        <tr>
+            <th>Your balance</th>
+            <td><?php echo $dataView['balance'] ?></td>
+        </tr><tr>
+            <th>Your total commission</th>
+            <td><?php echo $dataView['commission'] ?></td>
+        </tr><tr>
+            <th>Your paid</th>
+            <td><?php echo $dataView['withdraw'] ?></td>
+        </tr><tr>
+            <th>Your paypal email</th>
+            <td><?php echo $dataView['paypal_email'] ?></td>
+        </tr><tr>
+            <th>Your upline</th>
+            <td>
+                <?php if($dataView['upline_customer']==null || isset($uplineParam)):?>
+                <form action="<?=$block->getUrl('*/*/saveupline')?>" method="POST">
+<!--                    SESSION ID-->
+                    <input name="customerId" type="hidden" value="<?=$block->getCustomerId()?>">
+                    <select name="id" id="uplineSelect">
+                        <?php foreach($allCustomer as $item): ?>
+                            <option name="uplineId" id="uplineId" value="<?=$item['customer_id'];?>"><?=$item['customer_id']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button type="submit">Save</button>
+                </form>
+
+
+
+                <?php
+
+                else:
+                    echo $dataView['upline_customer'];
+
+                ?>
+                    <td><a href="<?=$block->getUrl('*/*/dashboard',['id' => $block->getCustomerId()])?>">Change</a></td>
+                <?php endif; ?>
+            </td>
+
+        </tr>
+        <tr>
+            <th>Your unique code</th>
+            <td><?php echo $dataView['unique_code'] ?></td>
+        </tr>
+        </tbody>
+    </table>
+<?php else : ?>
+    <?php if (!isset($dataView['status'])) : ?>
+        <a href="<?php echo($baseUrl . "affiliate/affiliate/join") ?>" class="action primary"
+           id="btn-approve-affiliate">Join
+            Affiliate Program</a>
+    <?php else: ?>
+        <?php if ($dataView['status'] == Constant::AFFILIATE_CUSTOMER_PENDING) : ?>
+            <h1>pending</h1>
+        <?php else: ?>
+            <h1>disable</h1>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>
+
+<!--                Get select box value -->
+<script>
+    require(['jquery'],function ($) {
+        $('#uplineSelect').on('change',function(){
+            var id = $(this).children("#uplineId:selected").val();
+        });
+    })
+</script>

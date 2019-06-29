@@ -1,0 +1,108 @@
+<?php
+
+use Magenest\Affiliate\Helper\Constant;
+
+/**
+ * @var \Magenest\Affiliate\Block\Account $block
+ */
+$dataView = $block->getDataLink();
+$isAffiliate = $dataView['is_affiliate'];
+$joinUrl = $block->getUrl('affiliate/account/joinaffiliate');
+$baseUrl = $block->getUrl();
+$customParam = $block->getConfig()->getCustomParam();
+$banner = $block->getAllBanner();
+?>
+
+<script>
+    if (typeof(window.magenest) === 'undefined') {
+        window.magenest = {};
+    }
+    if (typeof(window.magenest.affiliate) === 'undefined'){
+        window.magenest.affiliate = {};
+    }
+    window.magenest.affiliate.currentMenu = '<?php echo $dataView['current_menu']; ?>';
+</script>
+
+<?php if ($isAffiliate) { ?>
+    <h3>Referral Link</h3>
+    Enter any URL from this store in the form below to generate a new referral link:
+    <input type="text" id="url-here"> Please input product url,or leave it blank and we will use base url
+    <br>
+    <button class="action primary" id="btn-generate-url">Generate</button>
+    <!--    <p>--><?php //echo $baseUrl.$customParam."/".$dataView['unique_code']?><!--</p>-->
+    <p id="url-result">Your unique referral link is: <strong><span id="url-genlink"><?php echo $baseUrl."?code=".$dataView['unique_code'] ?></span></strong></p>
+
+    <h3>Referral Coupon</h3>
+    Share the coupon with your friends and receive commission when when they make purchase using this coupon:
+    <input id="coupon_code" value="<?php echo $dataView['unique_code'] ?>" readonly="readonly" type="text"/>
+    <hr/>
+    <?php foreach($banner as $key):
+        if($key["status"]==="1"):
+            ?>
+            <div class="default-link">
+                <h3>Banner</h3>
+                <p><b>Type: </b><?=$key["type"]?></p>
+                <p><b>Size: </b><?=$key["width"]?> x <?=$key["height"]?></p>
+                <p>
+                    <b>Clicks (unique/raw): </b>
+                    <span style="color: dodgerblue;font-size:16px;font-weight: bold"><?=$key["click_unique"]?></span>
+                    /
+                    <span style="color: dodgerblue;font-size:16px;font-weight: bold"><?=$key["click_raw"]?></span>
+                </p>
+                <p>
+                    <b>Commissions: </b>
+                    <strong class="dashboard-totals-value">
+                        <span class="price" style="color: #eb5202;font-size:18px">$<?=$key["click_unique_commission"]?></span>
+                        <span class="dashboard-totals-decimals"></span>
+                    </strong>
+
+                </p>
+                <p><b>Link: </b><a target="_blank" href=<?=$baseUrl ."affiliate/account/ppc?code=". $dataView["unique_code"].'&bannerid='.$key['id'].'&url='.$key["link"]?> >
+                        <?=$baseUrl ."affiliate/account/ppc?code=". $dataView["unique_code"].'&bannerid='.$key['id'].'&url='.$key["link"]?></a>
+                </p>
+                <img  alt="banner" src=<?=$key["image"];?> >
+            </div>
+        <?php endif; endforeach; ?>
+    <script>
+        require([
+            'jquery',
+            'Magento_Ui/js/modal/confirm',
+            'Magento_Ui/js/modal/alert'
+        ], function ($, confirmation, alert) {
+            'use strict';
+            $('button#btn-generate-url').click(function () {
+                var url;
+                url = $('input#url-here').val();
+                var base_url = '<?php echo $baseUrl ?>';
+                //$('span#url-genlink').html(base_url + "<?php //echo $customParam."/".$dataView['unique_code'] ?>//");
+                //if (validateUrl(url)) {
+                //    url = encodeURIComponent(url);
+                //    var finalUrl = base_url + "<?php //echo $customParam."/".$dataView['unique_code'] ?>//" + '?return_url=' + url;
+                //    $('span#url-genlink').html(finalUrl);
+                //}
+                url = url.replace(/ +/g, "");
+                url = url.replace("%2F", "/");
+                if(url.includes(base_url))
+                    url = url.replace(base_url,"");
+                $('span#url-genlink').html(base_url + "<?php echo $dataView['unique_code'] ?>");
+                if (validateUrl(url)) {
+                    url = encodeURIComponent(url);
+                    var finalUrl = base_url + url + "<?php echo "?code=".$dataView['unique_code'] ?>" ;
+                    $('span#url-genlink').html(finalUrl);
+                }
+                else {
+                    alert({
+                        content: 'Please enter a valid URL'
+                    });
+                }
+            });
+
+            function validateUrl(str) {
+                return true;
+            }
+        });
+    </script>
+<?php } else { ?>
+    <a href="<?php echo($baseUrl . "affiliate/affiliate/join") ?>" class="action primary" id="btn-approve-affiliate">Join
+        Affiliate Program</a>
+<?php } ?>

@@ -1,0 +1,17 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ninhvu
+ * Date: 09/03/2018
+ * Time: 09:38
+ */
+
+/**@var $block \Magenest\Affiliate\Block\Adminhtml\AffiliateDiscount*/
+$data = $block->getDiscountAffiliate();
+?>
+<?php if($data): ?>
+<tr>
+    <td> Affiliate Discount</td>
+    <td>-$<?php echo $data;?></td>
+</tr>
+<?php endif;?>

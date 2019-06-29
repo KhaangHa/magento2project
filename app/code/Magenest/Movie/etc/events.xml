@@ -10,4 +10,5 @@
         <observer name="movie_save"
                   instance="Magenest\Movie\Observer\ObserveMovie" />
     </event>
+
 </config>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_save_commit_after">
+        <observer name="magenest_affiliate_sales_order_save_after" instance="Magenest\Affiliate\Observer\SalesOrderSaveAfter" shared="false" />
+    </event>
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="magenest_affiliate_sales_order_creditmemo_save_after" instance="Magenest\Affiliate\Observer\CreditmemoSaveAfter" shared="false" />
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="magenest_affiliate_sales_order_invoice_save_after" instance="Magenest\Affiliate\Observer\InvoiceSaveAfter" shared="false" />
+    </event>
+    <!--Magenest Affiliate event-->
+    <event name="magenest_affiliate_update_balance">
+        <observer name="magenest_affiliate_update_balance" instance="Magenest\Affiliate\Observer\Affiliate\UpdateCustomerBalance" shared="false" />
+    </event>
+    <event name="magenest_affiliate_set_cookie">
+        <observer name="magenest_affiliate_set_cookie" instance="Magenest\Affiliate\Observer\Affiliate\SetCookie" />
+    </event>
+    <event name="admin_system_config_changed_section_magenest_affiliate">
+        <observer name="change_magenest_affiliate" instance="Magenest\Affiliate\Observer\Affiliate\Config"/>
+    </event>
+    <event name="customer_logout">
+        <observer name="delete_cookie" instance="Magenest\Affiliate\Observer\Customer\Logout"/>
+    </event>
+</config>

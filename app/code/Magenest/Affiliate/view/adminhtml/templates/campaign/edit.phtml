@@ -1,0 +1,115 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ninhvu
+ * Date: 09/03/2018
+ * Time: 16:09
+ */
+/** @var $block Magenest\Affiliate\Block\Adminhtml\Campaign\Edit\Tab\Main */
+
+$campaign = $block->getCampaign();
+?>
+<fieldset id="_info_general" class="fieldset admin__fieldset ">
+    <legend class="admin__legend legend">
+        <span>Campagin</span>
+    </legend>
+    <br>
+    <form id="campaign_page" method="POST" action="<?php echo $block->getUrl('affiliate/campaign/save') ?>">
+        <input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>"/>
+        <input type="hidden" name="id" value="<?=$campaign['id']?>" />
+        <div class="admin__field field field-content with-addon"
+             data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-form-field-content">
+            <label class="label admin__field-label"
+                   data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-textarea-data-content-label"
+                   for="_info_content">
+                <span>Name</span>
+            </label>
+
+            <div class="admin__field-control control">
+                <div class="admin__field">
+                        <input class="required-entry _required text admin__control-text"
+                                  data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-data-content"
+                                  name="name" value="<?php echo $campaign['name'];?>" >
+                </div>
+            </div>
+        </div>
+
+        <div class="admin__field field field-status "
+             data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-form-field-status">
+            <label class="label admin__field-label"
+                   data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-label-data-status-label"
+                   for="_info_status">
+                <span>Status</span>
+            </label>
+
+            <div class="admin__field-control control">
+                <div class="admin__field-control control">
+                    <div class="admin__field admin__field-option">
+                        <input id="_info_active1" class="admin__control-radio" type="radio" value="1"
+                               name="status" <?php if($campaign['status']==1) echo "checked";?>>
+                        <label class="admin__field-label" for="_info_active1">
+                            <span>Active</span>
+                        </label>
+                    </div>
+                    <div class="admin__field admin__field-option">
+                        <input id="_info_active2" class="admin__control-radio" type="radio" value="2"
+                               name="status" <?php if($campaign['status']==2) echo "checked";?>>
+                        <label class="admin__field-label" for="_info_active2">
+                            <span>Not Active</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin__field field field-content with-addon"
+             data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-form-field-content">
+            <label class="label admin__field-label"
+                   data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-textarea-data-content-label"
+                   for="_info_content">
+                <span>Description</span>
+            </label>
+
+            <div class="admin__field-control control">
+                <div class="admin__field">
+                        <textarea id="_info_content" class=" required-entry _required textarea admin__control-textarea"
+                                  data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-textarea-data-content"
+                                  cols="15" rows="2" name="description"
+                                  style="height: 100px;"><?php echo $campaign['description'] ?></textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="admin__field field field-content with-addon"
+             data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-form-field-content">
+            <label class="label admin__field-label"
+                   data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-textarea-data-content-label"
+                   for="_info_content">
+                <span>Set Campaign as New From</span>
+            </label>
+
+            <div class="admin__field-control control">
+                <div class="admin__field">
+                    <div style="float: left">
+                        <input id="_info_content" class=" required-entry _required  admin__control-text _has-datepicker"
+                               data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-select-data-content"
+                               name="start_time" value="<?php echo $campaign['start_time'];?>" type="date">
+                        <button type="button" class="ui-datepicker-trigger v-middle"><span>Select Date</span></button>
+                    </div>
+                    <div style="float: left;margin-left: 8%">To</div>
+                    <div style="float: left;margin-left: 5%">
+                        <input id="_info_content" class=" required-entry _required  admin__control-text _has-datepicker"
+                               data-ui-id="adminhtml-campaign-edit-tab-general-0-fieldset-element-select-data-content"
+                               name="end_time" value="<?php echo $campaign['end_time'];?>" type="date">
+                        <button type="button" class="ui-datepicker-trigger v-middle"><span>Select Date</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="scalable save campaign" style="float:right" type="submit">
+            <span>Submit</span>
+        </button>
+    </form>
+</fieldset>

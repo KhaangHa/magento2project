@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="100" class="magenest-tab">
+            <label><![CDATA[<a href="http://magenest.com/" target="_BLANK" title="">magenest.com</a>]]></label>
+        </tab>
+        <section id="magenest_affiliate" translate="label" type="text" sortOrder="80" showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Affiliate</label>
+            <tab>magenest</tab>
+            <resource>Magenest_Affiliate::config_affiliate</resource>
+            <group id="version" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <frontend_model>Magenest\Affiliate\Block\Adminhtml\System\Config\Fieldset\Version</frontend_model>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Affiliate Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="auto_enroll" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Auto Join Affiliate program when Customer registers</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Customer need join affiliate program in customer page if this option turn off</comment>
+                </field>
+
+                <field id="need_approved" translate="label" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Admin need review affiliate</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="cookie_lifetime" translate="label" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Cookie Lifetime</label>
+                    <comment>Value in second. Default = 86400 (1 day)</comment>
+                </field>
+
+                <field id="custom_param" translate="label" type="text" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Custom parameter</label>
+                    <comment>
+                        <![CDATA[
+                        <b>This param use for url rewrite.</b>
+                        <br/>
+                        <b>It will becomes:</b>
+                        <br/>
+                        http://yoursite.com/yourparam/COUPON_CODE_VALUE_HERE
+                        <br/>
+                        <b>If you leave it blank, it will be:</b>
+                        <br/>
+                        http://yoursite.com/coupon/COUPON_CODE_VALUE_HERE
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="commission" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Commission Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="5"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled Commission</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="commission_condition" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Add commission to affiliate account balance when</label>
+                    <source_model>Magenest\Affiliate\Model\System\Config\Source\OrderStatus</source_model>
+                </field>
+                <field id="commission_type" translate="label" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Type</label>
+                    <source_model>Magenest\Affiliate\Model\System\Config\Source\CommissionType</source_model>
+                </field>
+                <field id="commission_value" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Commission Value</label>
+                    <comment>Blank mean "zero"</comment>
+                </field>
+                <field id="commission_hold" translate="label" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Holding day</label>
+                    <comment>Commission need hold before add for affiliate account balance. Blank mean "zero"</comment>
+                </field>
+                <field id="subtract_commission" translate="label" type="select" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Subtract commission from affiliate account balance when refund</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="subtract_commission_type" translate="label" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Subtract commission type</label>
+                    <source_model>Magenest\Affiliate\Model\System\Config\Source\SubtractCommissionType</source_model>
+                    <depends>
+                        <field id="subtract_commission">1</field>
+                    </depends>
+                </field>
+                <field id="subtract_commission_value" translate="label" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Subtract commission value</label>
+                    <comment>Blank mean "zero"</comment>
+                    <depends>
+                        <field id="subtract_commission">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="discount" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Discount Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled Discount</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="coupon_type" translate="label" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Discount Type</label>
+                    <source_model>Magenest\Affiliate\Model\System\Config\Source\DiscountCouponType</source_model>
+                </field>
+                <field id="discount_value" translate="label" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Discount Value</label>
+                </field>
+                <!--<field id="create_sale_rule" translate="button_label" sortOrder="60" showInDefault="1" showInWebsite="1"-->
+                       <!--showInStore="1">-->
+                    <!--<label>Create/Edit Coupon for Affiliate program</label>-->
+                    <!--<button_label>Create Sale Rule</button_label>-->
+                    <!--<frontend_model>Magenest\Affiliate\Block\Adminhtml\System\Config\CreateSaleRule</frontend_model>-->
+                <!--</field>-->
+            </group>
+
+            <group id="withdraw" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Withdraw Configuration</label>
+                <field id="auto_withdraw" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auto approve withdraw requests</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="allowed_methods" translate="label" type="multiselect" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Allowed Methods</label>
+                    <source_model>Magenest\Affiliate\Model\Source\Method</source_model>
+                    <can_be_empty>0</can_be_empty>
+                </field>
+
+                <field id="min" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Min Withdraw</label>
+                    <comment>Enter the minimum amount to make a withdrawal. Leave blank is zero.</comment>
+                </field>
+
+                <field id="max" translate="label" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Withdraw</label>
+                    <comment>Enter the maximum amount to make a withdrawal. Leave blank is unlimited.</comment>
+                </field>
+
+                <field id="enable_fee" translate="label" type="select" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Withdraw Fee</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="fee_type" translate="label" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fee type</label>
+                    <source_model>Magenest\Affiliate\Model\Source\Type</source_model>
+                    <depends>
+                        <field id="enable_fee">1</field>
+                    </depends>
+                </field>
+
+                <field id="fee_value" translate="label" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fee value</label>
+                    <depends>
+                        <field id="enable_fee">1</field>
+                    </depends>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+            <group id="payment" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Payment Setting</label>
+                <group id="paypal" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>PayPal</label>
+                    <field id="api_username" translate="label" type="obscure" sortOrder="10"
+                           showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>API Username</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="api_password" translate="label" type="obscure" sortOrder="20"
+                           showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>API Password</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="api_signature" translate="label" type="obscure" sortOrder="30"
+                           showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>API Signature</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    </field>
+                    <field id="is_sandbox" translate="label" type="select" sortOrder="40"
+                           showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sandbox Mode</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+            </group>
+            <group id="document" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Document</label>
+            </group>
+        </section>
+    </system>
+</config>

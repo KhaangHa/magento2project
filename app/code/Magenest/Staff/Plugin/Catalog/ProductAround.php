@@ -29,12 +29,12 @@ class ProductAround
 
         $sql = "Select type FROM magenest_staff WHERE customer_id = " . $id;
         $outPut = $connection->fetchAll($sql);
-
+        $subscriptionTextHTML = "";
         if($outPut){
             $logger = \Magento\Framework\App\ObjectManager::getInstance()->get(\Psr\Log\LoggerInterface::class);
             $logger->info($result);
-
-            $subscriptionTextHTML = '<b class="price">(lv'.$outPut[0]['type'].')</b>';
+            if($outPut[0]['type']==1 || $outPut[0]['type']==2)
+                $subscriptionTextHTML = '<b class="price">(lv'.$outPut[0]['type'].')</b>';
 
             return $result.$subscriptionTextHTML;
         }

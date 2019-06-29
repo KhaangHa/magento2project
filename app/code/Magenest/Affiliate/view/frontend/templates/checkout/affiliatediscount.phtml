@@ -1,0 +1,28 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ninhvu
+ * Date: 07/03/2018
+ * Time: 07:50
+ */
+?>
+Hello
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "affiliate_discount": {
+                    "component": "Magenest_Affiliate/js/view/checkout/summary/affiliatediscount",
+                    "config": {
+                        "affiliate_discount": "<?php echo $block->getAffiliateDiscount() ?>",
+                    },
+                    "param" {
+                        "affiliate_discount": "<?php echo $block->getAffiliateDiscount() ?>",
+                    }
+                }
+            }
+        }
+    }
+}
+</script>

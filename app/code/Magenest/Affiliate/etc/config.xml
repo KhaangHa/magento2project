@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <magenest_affiliate>
+            <general>
+                <enable>1</enable>
+                <auto_enroll>1</auto_enroll>
+                <need_approved>0</need_approved>
+                <cookie_lifetime>86400</cookie_lifetime>
+                <custom_param>coupon</custom_param>
+            </general>
+            <commission>
+                <enabled>1</enabled>
+                <commission_condition>processing</commission_condition>
+                <commission_type>percentage</commission_type>
+                <commission_value>10</commission_value>
+            </commission>
+            <discount>
+                <enabled>1</enabled>
+                <coupon_type>by_percent</coupon_type>
+                <discount_value>10</discount_value>
+            </discount>
+            <withdraw>
+                <allowed_methods>offline,paypal</allowed_methods>
+                <min>0</min>
+                <max>10000</max>
+            </withdraw>
+        </magenest_affiliate>
+    </default>
+</config>

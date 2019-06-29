@@ -5,7 +5,7 @@ define(['jquery', 'uiComponent', 'domReady'], function ($, component) {
             productId: null,
             priceConfig: null,
             prices: {},
-            priceTemplate: '<span class="price"><%- data.formatted %> (lv 1)</span>'
+            priceTemplate: '<span class="price"><%- data.formatted %></span>'
         };
 
         $.widget('mage.priceBox', widget, {
@@ -13,15 +13,4 @@ define(['jquery', 'uiComponent', 'domReady'], function ($, component) {
         });
         return $.mage.priceBox;
     }
-    // return component.extend({
-    //     defaults: {
-    //         template: 'Vendor_Module/template'
-    //     },
-    //     productInfo: window.customInfo.parameter,
-    //
-    //     initialize: function () {
-    //         //init function code here
-    //     }
-    // });
-
 });

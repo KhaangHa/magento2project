@@ -1,0 +1,85 @@
+<?php
+    $campaign = $this->getCampaign();
+    $banner = $this->getAllBanner();
+    $baseUrl = $block->getUrl();
+    $dataView = $block->getDataLink();
+
+?>
+
+<h3>Available campaigns</h3>
+
+<div>
+    <div class="table-wrapper">
+        <table class="data table table-order-items history">
+            <tbody>
+
+            <tr>
+                <th>Campaign title</th>
+                <th>Description</th>
+                <th>Start time</th>
+                <th>End time</th>
+                <th>Action</th>
+            </tr>
+            <?php foreach($campaign as $item): ?>
+                <tr>
+                    <td> <?=$item['name'];?></td>
+                    <td><?=$item['description'];?></td>
+                    <td><?=$item['start_time'];?></td>
+                    <td><?=$item['end_time'];?></td>
+                    <td><button class="viewBtn" onClick="getElement(this.id)" value="<?=$item['id'];?>">view banner</button></td>
+                </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
+        <br/>
+    </div>
+<!--    DISPLAY BANNER SECTION-->
+    <?php foreach($banner as $key):
+        if($key["status"]==="1"):
+            ?>
+        <div class="banner-container">
+            <div class="<?=$key['campaign_id']?>" hidden="true">
+                <h3><?=__($key['title']);?></h3>
+                <p><b>Type: </b><?=$key["type"]?></p>
+                <p><b>Size: </b><?=$key["width"]?> x <?=$key["height"]?></p>
+                <p>
+                    <b>Clicks (unique/raw): </b>
+                    <span style="color: dodgerblue;font-size:16px;font-weight: bold"><?=$key["click_unique"]?></span>
+                    /
+                    <span style="color: dodgerblue;font-size:16px;font-weight: bold"><?=$key["click_raw"]?></span>
+                </p>
+                <p>
+                    <b>Commissions (unique/raw): </b>
+                    <strong class="dashboard-totals-value">
+                        <span class="price" style="color: #eb5202;font-size:18px">$<?=$key["click_unique_commission"]?></span>
+                        <span class="dashboard-totals-decimals"></span>
+                    </strong>
+                    /
+                    <strong class="dashboard-totals-value">
+                        <span class="price" style="color: #eb5202;font-size:18px">$<?=$key["click_raw_commission"]?></span>
+                        <span class="dashboard-totals-decimals"></span>
+                    </strong>
+                </p>
+                <p><b>Link: </b><a target="_blank" href=<?=$baseUrl ."affiliate/account/ppc?code=". $dataView["unique_code"].'&bannerid='.$key['id'].'&url='.$key["link"]?> >
+                        <?=$baseUrl ."affiliate/account/ppc?code=". $dataView["unique_code"].'&bannerid='.$key['id'].'&url='.$key["link"]?></a>
+                </p>
+                <img  alt="banner" src=<?=$key["image"];?> >
+            </div>
+        </div>
+
+        <?php endif; endforeach; ?>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ],function($){
+        var prevId = 0; //get previous id
+        $('.viewBtn').click(function(){
+            $('.'+prevId).hide(); //hide previous banners
+            var id = $(this).val(); // get current id
+            $('.'+id).show(); //use id to display banner
+            prevId = id; //save new prevID
+        })
+    })
+</script>

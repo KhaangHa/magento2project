@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_Affiliate::main" title="Magenest Affiliate"
+             module="Magenest_Affiliate" sortOrder="60"
+             dependsOnModule="Magenest_Affiliate" resource="Magenest_Affiliate::main"/>
+
+        <add id="Magenest_Affiliate::AffiliateDashboard"
+             title="Dashboard"
+             module="Magenest_Affiliate"
+             sortOrder="5"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/dashboard/index"
+             resource="Magenest_Affiliate::AffiliateDashboard"/>
+
+        <add id="Magenest_Affiliate::AffiliateCustomer"
+             title="Affiliate Account"
+             module="Magenest_Affiliate"
+             sortOrder="10"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/customer/index"
+             resource="Magenest_Affiliate::AffiliateCustomer"/>
+
+        <add id="Magenest_Affiliate::program"
+             title="Affiliate Program"
+             module="Magenest_Affiliate"
+             sortOrder="15"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/program/index"
+             resource="Magenest_Affiliate::program"/>
+
+        <add id="Magenest_Affiliate::campaign"
+             title="Affiliate Campaign"
+             module="Magenest_Affiliate"
+             sortOrder="20"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/campaign/index"
+             resource="Magenest_Affiliate::campaign"/>
+
+        <add id="Magenest_Affiliate::withdraw"
+             title="List withdraw"
+             module="Magenest_Affiliate"
+             sortOrder="30"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/withdraw/index"
+             resource="Magenest_Affiliate::withdraw"/>
+
+        <add id="Magenest_Affiliate::banner"
+             title="Banner"
+             module="Magenest_Affiliate"
+             sortOrder="40"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/banner/index"
+             resource="Magenest_Affiliate::banner"/>
+
+        <add id="Magenest_Affiliate::transaction"
+             title="Transaction"
+             module="Magenest_Affiliate"
+             sortOrder="50"
+             parent="Magenest_Affiliate::main"
+             action="affiliate/transaction/index"
+             resource="Magenest_Affiliate::transaction"/>
+
+        <add id="Magenest_Affiliate::affiliate_config" title="Configurations"
+             module="Magenest_Affiliate" sortOrder="60" parent="Magenest_Affiliate::main"
+             action="adminhtml/system_config/edit/section/magenest_affiliate"
+             resource="Magenest_Affiliate::affiliate_config"/>
+    </menu>
+</config>

@@ -4,37 +4,62 @@
     <menu>
         <add
                 id="Magenest_Movie::main_menu"
-                title="Movie"
+                title="My Place"
                 sortOrder="50"
                 module="Magenest_Movie"
                 resource="Magenest_Movie::main"
         />
         <add
-                id="Magenest_Movie::movie_collection"
-                title="Movie Collection"
+                id="Magenest_Movie::movie_section"
+                title="Movie"
                 module="Magenest_Movie"
-                sortOrder="1"
+                sortOrder="5"
                 parent="Magenest_Movie::main_menu"
-                action="movie/index/movie"
-                resource="Magenest_Movie::movie"
+                resource="Magenest_Movie::Movie"
         />
+            <add
+                    id="Magenest_Movie::movie_collection"
+                    title="Movie Collection"
+                    module="Magenest_Movie"
+                    sortOrder="1"
+                    parent="Magenest_Movie::main_menu"
+                    action="movie/index/movie"
+                    resource="Magenest_Movie::movie"
+            />
+            <add
+                    id="Magenest_Movie::director_collection"
+                    title="Director Collection"
+                    module="Magenest_Movie"
+                    sortOrder="2"
+                    parent="Magenest_Movie::main_menu"
+                    action="movie/index/director"
+                    resource="Magenest_Movie::director"
+            />
+            <add
+                    id="Magenest_Movie::actor_collection"
+                    title="Actor Collection"
+                    module="Magenest_Movie"
+                    sortOrder="3"
+                    parent="Magenest_Movie::main_menu"
+                    action="movie/index/actor"
+                    resource="Magenest_Movie::actor"
+            />
         <add
-                id="Magenest_Movie::director_collection"
-                title="Director Collection"
+                id="Magenest_Movie::container"
+                title="Container"
                 module="Magenest_Movie"
-                sortOrder="2"
+                sortOrder="20"
                 parent="Magenest_Movie::main_menu"
-                action="movie/index/director"
-                resource="Magenest_Movie::director"
+                resource="Magenest_Movie::Movie"
         />
-        <add
-                id="Magenest_Movie::actor_collection"
-                title="Actor Collection"
-                module="Magenest_Movie"
-                sortOrder="3"
-                parent="Magenest_Movie::main_menu"
-                action="movie/index/actor"
-                resource="Magenest_Movie::actor"
-        />
+            <add
+                    id="Magenest_Movie::index"
+                    title="Module Section"
+                    module="Magenest_Movie"
+                    sortOrder="25"
+                    parent="Magenest_Movie::container"
+                    action="movie/index/"
+                    resource="Magenest_Movie::index"
+            />
     </menu>
 </config>

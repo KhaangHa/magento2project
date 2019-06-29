@@ -1,0 +1,27 @@
+<?php
+    $title = $this->getTabLabel();
+    $banner = $this->getRefBanner();
+?>
+
+<div>
+    <div class="content">
+        <fieldset id="_info_general" class="fieldset admin__fieldset ">
+            <legend class="admin__legend legend">
+                <span><?=__($title)?></span>
+            </legend>
+            <br>
+            <?php foreach($banner as $item):?>
+                <?php if($item['type'] == 1): ?>
+                    <p><strong>Title:</strong> <?=$item['title']; ?></p>
+                    <p><strong>Link:</strong> <a href="<?=$item['link'];?>"><?=$item['link']; ?></a></p>
+                    <p><strong>Click( unique/raw):</strong> <?=$item['click_unique']."/".$item['click_raw'];?></p>
+                    <img src="<?=$item['image']?>" alt="banner-image"/>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if(empty($banner) && !empty($this->getId())): ?>
+                <a href="<?=$this->getBannerLink()?>">Create a banner for this campaign</a>
+            <?php endif; ?>
+        </fieldset>
+
+    </div>
+</div>

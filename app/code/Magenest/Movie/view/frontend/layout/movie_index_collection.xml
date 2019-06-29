@@ -6,7 +6,7 @@
 
     </head>
     <body>
-        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="false"/>
         <referenceContainer name="content">
 
             <block class="Magenest\Movie\Block\Hello"

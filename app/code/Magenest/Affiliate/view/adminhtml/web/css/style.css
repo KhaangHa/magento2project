@@ -1,0 +1,40 @@
+.affiliate-status-decorated.declined {
+    background: #f9d4d4 none repeat scroll 0 0;
+    border: 1px solid #e22626;
+    color: #e22626;
+    display: block;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 0 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.affiliate-status-decorated.approved {
+    background: #d0e5a9 none repeat scroll 0 0;
+    border: 1px solid #5b8116;
+    color: #185b00;
+    display: block;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 0 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.affiliate-status-decorated.pending {
+    background: #feeee1 none repeat scroll 0 0;
+    border: 1px solid #ed4f2e;
+    color: #ed8c35;
+    display: block;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 0 3px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.dashboard-secondary{
+    margin-right: 10px;
+    border: 1px solid red;
+}

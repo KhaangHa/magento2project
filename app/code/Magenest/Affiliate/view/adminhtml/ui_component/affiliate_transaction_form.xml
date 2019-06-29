@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd"
+>
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">affiliate_transaction_form.affiliate_transaction_listing_data_source</item>
+            <item name="deps" xsi:type="string">affiliate_transaction_form.affiliate_transaction_listing_data_source</item>
+        </item>
+
+        <item name="label" xsi:type="string" translate="true">Add Transaction</item>
+        <!--
+        <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item>
+        -->
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">affilate_transaction_form</item>
+        </item>
+
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Magenest\Affiliate\Block\Adminhtml\Buttons\Transaction\Save</item>
+            <item name="back" xsi:type="string">Magenest\Affiliate\Block\Adminhtml\Buttons\Transaction\Back </item>
+            <item name="delete" xsi:type="string">Magenest\Affiliate\Block\Adminhtml\Buttons\Transaction\Delete </item>
+
+        </item>
+    </argument>
+    <dataSource name="affiliate_transaction_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">
+                Magenest\Affiliate\Model\Provider\Transaction\DataProvider
+            </argument>
+            <argument name="name" xsi:type="string">affiliate_transaction_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="affiliate/transaction/save" />
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+
+    <fieldset name="transaction">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Transaction Management</item>
+            </item>
+        </argument>
+
+        <field name="id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">transaction</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="customer_id_upline">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magenest\Affiliate\Model\Config\Source\Transaction\CustomerTransactionList</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Customer ID Upline</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">banner</item>
+                    <item name="dataScope" xsi:type="string">customer_id_upline</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="customer_id_downline">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Id Downline</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">transaction</item>
+                </item>
+            </argument>
+        </field>
+        <field name="order_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magenest\Affiliate\Model\Config\Source\Transaction\TransactionList</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Order ID</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">banner</item>
+                    <item name="dataScope" xsi:type="string">order_id</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="invoice_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Invoice ID</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">transaction</item>
+                </item>
+            </argument>
+        </field>
+        <field name="creditmemo_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Creditmemo ID</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">transaction</item>
+                </item>
+            </argument>
+        </field>
+        <field name="count_down">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Countdown</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">transaction</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Description</item>
+                    <item name="dataType" xsi:type="string">textarea</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">transaction</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/textarea</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

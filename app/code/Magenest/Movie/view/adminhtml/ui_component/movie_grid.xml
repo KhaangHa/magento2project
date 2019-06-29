@@ -86,6 +86,19 @@
         </selectionsColumn>
         <!--        A BUNCH OF DATABASE COLLUMN BASE ON NAME-->
         <!-- define the columns of grid: name from spinner -->
+        <column name="thumbnail" class="Magenest\Movie\Ui\Component\Listing\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <!-- <item name="add_field" xsi:type="boolean">true</item> -->
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">name</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </column>
         <column name="movie_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -113,24 +126,23 @@
                 </item>
             </argument>
         </column>
-        <column name="rating">
+        <column name="rating" class="Magenest\Movie\Ui\Component\Listing\Column\Star">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="sorting" xsi:type="string">asc</item>
-                    <item name="label" xsi:type="string" translate="true">Movie rating</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <!-- <item name="add_field" xsi:type="boolean">true</item> -->
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">name</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Rating</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
                 </item>
             </argument>
         </column>
-        <column name="director_id">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="sorting" xsi:type="string">asc</item>
-                    <item name="label" xsi:type="string" translate="true">Director id</item>
-                </item>
-            </argument>
-        </column>
+
+
+
     </columns>
+
 </listing>
 

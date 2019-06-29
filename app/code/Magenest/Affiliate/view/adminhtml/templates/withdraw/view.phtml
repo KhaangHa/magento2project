@@ -1,0 +1,123 @@
+<?PHP
+
+use Magenest\Affiliate\Helper\Constant;
+
+/**
+ * @var Magenest\Affiliate\Block\Adminhtml\Withdraw\View $block
+ */
+$withdraw = $block->getWithdraw();
+$customer = $block->getCustomer($withdraw['customer_id']);
+$formAction = $block->getUrl('affiliate/withdraw/approve');
+$formActionDecline = $block->getUrl('affiliate/withdraw/decline');
+$bankInfo = $customer['bank_account'];
+$bankInfo = json_decode($bankInfo,true);
+?>
+<div class="page-title" style="margin: 50px 50px auto 50px;">
+    <span>Withdrawal details</span>
+    <span style="float: right">Customer Details</span>
+</div>
+<div class="page-content" style="margin: 50px 50px auto 50px;">
+    <input id="payment_method" hidden value="<?php echo $withdraw['method'];?>"/>
+    <div class="col-m-4">
+        <table class="admin__table-secondary">
+            <tr>
+                <th><?php echo __('Customer ID') ?></th>
+                <td><?php echo $withdraw['customer_id'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Customer name') ?></th>
+                <td><?php echo $block->getNameFromId($withdraw['customer_id']) ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Withdraw amount') ?></th>
+                <td><?php echo $withdraw['money'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Method') ?></th>
+                <td><?php echo $withdraw['method'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Time Created') ?></th>
+                <td><?php echo $withdraw['created_at'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Status') ?></th>
+                <td><?php echo Constant::getWithdrawAffiliateStatus($withdraw['status']) ?></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-m-4" style="float: right;">
+        <table class="admin__table-secondary">
+            <tr>
+                <th><?php echo __('Customer ID') ?></th>
+                <td><?php echo $customer['customer_id'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Customer name') ?></th>
+                <td><?php echo $block->getNameFromId($customer['customer_id']) ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Balance') ?></th>
+                <td><?php echo $customer['balance'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Total Commission') ?></th>
+                <td><?php echo $customer['total_commission'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Total Withdraw') ?></th>
+                <td><?php echo $customer['total_withdraw'] ?></td>
+            </tr>
+            <tr id="paypal">
+                <th><?php echo __('Paypal Email') ?></th>
+                <td><?php echo $customer['paypal_email'] ?></td>
+            </tr>
+            <tr class="bank">
+                <th><?php echo __('Bank Name') ?></th>
+                <td><?php echo $bankInfo['bank_name'] ?></td>
+            </tr>
+            <tr class="bank">
+                <th><?php echo __('Bank Account') ?></th>
+                <td><?php echo $bankInfo['bank_account'] ?></td>
+            </tr>
+            <tr class="bank">
+                <th><?php echo __('Bank Acount Number') ?></th>
+                <td><?php echo $bankInfo['bank_count_name'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Time Created') ?></th>
+                <td><?php echo $customer['created_at'] ?></td>
+            </tr>
+            <tr>
+                <th><?php echo __('Status') ?></th>
+                <td><?php echo Constant::getCustomerAffiliateStatus($customer['status']) ?></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<form id="withdraw-form-approve" action="<?php echo $formAction ?>">
+    <input type="hidden" readonly name="withdraw_id" value="<?php echo $block->id ?>">
+</form>
+<form id="withdraw-form-decline" action="<?php echo $formActionDecline ?>">
+    <input type="hidden" readonly name="withdraw_id" value="<?php echo $block->id ?>">
+</form>
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+        $('button#approve').click(function () {
+            $('#withdraw-form-approve').submit();
+        });
+        $('button#decline').click(function () {
+            $('#withdraw-form-decline').submit();
+        });
+        var payment = $('#payment_method').val();
+        console.log(payment);
+        if(payment=="PAYPAL"){
+            $('.bank').hide();
+        }
+        if(payment=="OFFLINE"){
+            $('#paypal').hide();
+        }
+    });
+</script>

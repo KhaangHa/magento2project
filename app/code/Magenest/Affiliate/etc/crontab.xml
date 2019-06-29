@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Cron/etc/crontab.xsd">
+    <group id="default">
+        <job name="magenest_affiliate_update_customer_balance" instance="Magenest\Affiliate\Cron\UpdateAffiliateCustomer" method="execute">
+            <schedule>30 1 * * *</schedule>
+        </job>
+    </group>
+</config>

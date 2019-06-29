@@ -3,6 +3,7 @@ namespace Magenest\Movie\Model\Config\Source;
 
 class ListMode implements \Magento\Framework\Option\ArrayInterface
 {
+
     public function toOptionArray()
     {
         return [

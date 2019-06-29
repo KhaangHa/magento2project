@@ -1,0 +1,132 @@
+/*global css file*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+button.affiliate-withdaw {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+button.affiliate-withdaw:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
+}
+
+button.affiliate-withdaw.innav {
+    width: 100%;
+}
+
+button.btn {
+    display: inline-block !important;
+    padding: 6px 12px !important;
+    margin-bottom: 0 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    line-height: 1.42857143 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    -ms-touch-action: manipulation !important;
+    touch-action: manipulation !important;
+    cursor: pointer !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap input.affiliate-amount-withdraw {
+    width: 30%;
+}
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap div.amount-withdraw {
+    position: relative;
+}
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap {
+
+}
+aside.affiliate-modal.modal-popup div.modal-inner-wrap {
+    width: 40%;
+}
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap i.fa.fa-credit-card {
+    position: absolute;
+    font-size: x-large;
+    top: 52%;
+    left: 24%;
+    opacity: 0.5;
+}
+
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap .tooltip {
+    display: inline-block;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 100px;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    opacity: 0.5;
+}
+aside.affiliate-modal.modal-popup div.modal-inner-wrap .tooltip:hover {
+    text-decoration: none;
+}
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap .tooltip:hover:after {
+    background: #333;
+    background: rgba(0, 0, 0, .8);
+    border-radius: 5px;
+    color: #fff;
+    content: attr(alt);
+    left: -100%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+    bottom: 150%;
+}
+
+aside.affiliate-modal.modal-popup div.modal-inner-wrap .tooltip:hover:before {
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 120%;
+    content: "";
+    left: 18%;
+    position: absolute;
+    z-index: 99;
+}
+aside.affiliate-modal.modal-popup div.modal-inner-wrap .tip {
+    display: inline-block;
+    padding-left: 12px;
+}
+.field-input-left{
+    width: 47%;
+    float: left;
+}
+.field-input-right{
+    width: 47%;
+    float: right;
+}
+@media (max-width: 1160px){
+    aside.affiliate-modal.modal-popup.modal-slide._show div.modal-inner-wrap{
+        width: 55%;
+    }
+}
+@media (max-width: 767px){
+    .field-input-right,
+    .field-input-left{
+        width: 100%;
+    }
+    aside.affiliate-modal.modal-popup.modal-slide._show div.modal-inner-wrap {
+        width: auto;
+    }
+}

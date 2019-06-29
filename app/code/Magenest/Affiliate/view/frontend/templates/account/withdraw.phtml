@@ -1,0 +1,182 @@
+<?php
+use Magenest\Affiliate\Helper\Constant;
+/**
+ * @var \Magenest\Affiliate\Block\Account $block
+ */
+$dataView = $block->getDataWithdrawPage();
+$isAffiliate = $dataView['is_affiliate'];
+$balance = $dataView['balance'];
+$currentUrl = $block->getUrl('affiliate/account/withdraw');
+$withdraws = $block->getWithdraws(); // get collection which we set in block class
+$direction = (strtoupper($block->direction) === 'ASC' || strtoupper($block->direction) === 'DESC') ? strtoupper($block->direction) : 'DESC';
+$directionRevert = ($direction === 'ASC') ? 'DESC' : 'ASC';
+$fieldToSort = (($block->fieldToSort) === 'created_at' || ($block->fieldToSort) === 'money') ? ($block->fieldToSort) : 'created_at';
+$cancelUrl = $block->getUrl('affiliate/account');
+?>
+<script>
+    if (typeof(window.magenest) === 'undefined') {
+        window.magenest = {};
+    }
+    if (typeof(window.magenest.affiliate) === 'undefined') {
+        window.magenest.affiliate = {};
+    }
+    window.magenest.affiliate.currentMenu = 4;
+    //    window.magenest.affiliate.currentMenu = '<?php //echo $dataView['current_menu']; ?>//';
+</script>
+<?php if ($isAffiliate) { ?>
+    <div id="date-filter">
+        <label for="date-from"><?php echo __('From') ?>:<i class="fa fa-calendar" aria-hidden="true"></i></label>
+        <input value="<?php echo $block->from ?>" readonly="readonly" class="from-to" name="date-from"
+               id="date-from"/>
+        <br>
+        <label for="date-to"><?php echo __('To') ?>:<i class="fa fa-calendar" aria-hidden="true"></i></label>
+        <input value="<?php echo $block->to ?>" readonly="readonly" class="from-to" name="date-to"
+               id="date-to"/>
+        <button class="action primary" id="filter-date">Filter</button>
+        <button class="action" id="reset-filter">Reset Filter</button>
+
+    </div>
+    <?php if ($withdraws && count($withdraws)): ?>
+        <div class="affiliate_balance">
+            Current balance:&nbsp;&nbsp;&nbsp;&nbsp;<b><span
+                        class="price"><?php echo $dataView['currency_symbol'] ?><?php echo $dataView['balance'] ?></span></b>
+            <button class="btn affiliate-withdaw" style="margin-left: 20px;">Request Withdraw</button>
+
+        </div>
+
+        <div class="table-wrapper orders-history">
+            <table class="data table table-order-items history" id="affiliate-withdraw-table">
+                <caption class="table-caption"><?php echo __('Withdraws History') ?></caption>
+                <thead> 
+                <tr>
+                    <th class="sortable created_at">
+                        Date
+                        <i class="fa fa-chevron-up ASC" aria-hidden="true"></i>
+                        <i class="fa fa-chevron-down DESC" aria-hidden="true"></i>
+                    </th>
+                    <th class="sortable money">
+                        Amount
+                        <i class="fa fa-chevron-up ASC" aria-hidden="true"></i>
+                        <i class="fa fa-chevron-down DESC" aria-hidden="true"></i>
+                    </th>
+                    <th>Status</th>
+                    <th>Method</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($withdraws as $withdraw) : ?>
+                        <tr>
+                            <td data-th="Date"><?php echo $withdraw['date'] ?></td>
+                            <td data-th="Amount">
+                                <span>
+                                    <span class="money">-<?php echo $dataView['currency_symbol'] ?><?php echo $withdraw['money'] ?></span>
+                                </span>
+                            </td>
+                            <td data-th="Status"><?php echo Constant::getWithdrawAffiliateStatus($withdraw['status']) ?></td>
+                            <td data-th="Method"><?php echo $withdraw['method'] ?></td>
+                            <?php if($withdraw['status']==Constant::AFFILIATE_WITHDRAW_PENDING) : ?>
+                                <td data-th="Action"><a href="<?php echo $block->getUrl('affiliate/account/withdrawCancel',['id'=> $withdraw['id']]);?>">Cancel</a> </td>
+                            <?php else: ?>
+                            <td data-th="Action"></td>
+                            <?php endif;?>
+                        </tr>
+
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); // for display pager block which we create in block file.   ?></div>
+        <?php endif ?>
+    <?php else: ?>
+        <div class="message info empty"><span><?php echo __('You have no withdrawal.'); ?></span></div>
+    <?php endif ?>
+<?php } ?>
+
+<!--the code blow is for ensuring that no duplicate param-->
+<!--sort-->
+<?php
+$currentUrlForSort = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$stringParam = explode("?", $currentUrlForSort, 2);
+if (count($stringParam) > 1) {
+    $arr = explode("&", $stringParam[1]);
+    foreach ($arr as $key => $value) {
+        $tmp = explode('=', $value);
+        if (count($tmp) && ($tmp[0] === 'field' || $tmp[0] === 'direction')) {
+            unset($arr[$key]);
+        }
+    }
+    $stringParam = implode("&", $arr);
+    $currentUrlForSort = $currentUrl . '?' . $stringParam;
+} else {
+    $currentUrlForSort = $currentUrlForSort . '?';
+}
+?>
+<script type="text/javascript">
+    require([
+        "jquery"
+    ], function ($) {
+        var direction = '<?php echo $direction; ?>';
+        var fieldToSort = '<?php echo $fieldToSort?>';
+        var select = 'th.' + fieldToSort + ' i.' + direction;
+        $(select).css('display', 'inline-block');
+
+        $('table#affiliate-withdraw-table th.sortable').click(function () {
+            if ($(this).hasClass('created_at')) {
+                window.location.href = '<?php echo $currentUrlForSort ?>' + '&field=created_at&direction=<?php echo $directionRevert?>';
+            }
+            if ($(this).hasClass('money')) {
+                window.location.href = '<?php echo $currentUrlForSort ?>' + '&field=money&direction=<?php echo $directionRevert?>';
+            }
+        });
+    });
+</script>
+
+<!--filter-->
+<?php
+$currentUrlForFilter = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$stringParam = explode("?", $currentUrlForFilter, 2);
+if (count($stringParam) > 1) {
+    $arr = explode("&", $stringParam[1]);
+    foreach ($arr as $key => $value) {
+        $tmp = explode('=', $value);
+        if (count($tmp) && ($tmp[0] === 'from' || $tmp[0] === 'to')) {
+            unset($arr[$key]);
+        }
+    }
+    $stringParam = implode("&", $arr);
+    $currentUrlForFilter = $currentUrl . '?' . $stringParam;
+} else {
+    $currentUrlForFilter = $currentUrlForFilter . '?';
+}
+?>
+<script type="text/javascript">
+    require([
+        "jquery",
+        "mage/calendar"
+    ], function ($) {
+        var from = '#date-from';
+        var to = '#date-to';
+        $(from).datepicker({
+            dateFormat: 'yy-mm-dd'
+
+        });
+        $(to).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+        $('button#filter-date').click(function () {
+            if ($(from).val() > $(to).val()) {
+                alert("Invalid Input")
+            }
+            else {
+                window.location.href = '<?php echo $currentUrlForFilter ?>' + '&from=' + $(from).val() + '&to=' + $(to).val();
+            }
+        })
+
+        //reset filter
+        $('button#reset-filter').click(function () {
+            window.location.href = '<?php echo $currentUrlForFilter ?>';
+        })
+    });
+</script>

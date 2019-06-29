@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+<!--    <head>-->
+<!--        <link src="Magenest_Affiliate::js/form/element/options.js"/>-->
+<!--    </head>-->
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="affiliate_program_form"/>
+        </referenceContainer>
+<!--        <referenceContainer name="left">-->
+<!--            <block class="Magenest\Affiliate\Block\Adminhtml\Program\Edit\Tabs" name="program_edit_tabs">-->
+<!--                <block class="Magenest\Affiliate\Block\Adminhtml\Program\Edit\Tab\Main" name="program_edit_tab_main"/>-->
+<!--                <action method="addTab">-->
+<!--                    <argument name="name" xsi:type="string">main_section</argument>-->
+<!--                    <argument name="block" xsi:type="string">program_edit_tab_main</argument>-->
+<!--                </action>-->
+<!--            </block>-->
+<!--        </referenceContainer>-->
+    </body>
+</page>

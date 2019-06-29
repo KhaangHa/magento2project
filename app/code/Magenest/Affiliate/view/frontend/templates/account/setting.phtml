@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var \Magenest\Affiliate\Block\Account $block
+ */
+
+$dataView = $block->getDataSettingPage();
+$formAction = $block->getUrl('affiliate/account/saveSetting');
+$paypalEmail = isset($dataView['paypal_email'])?$dataView['paypal_email']:"";
+$isAffiliate = false;
+
+?>
+<script>
+    if (typeof(window.magenest) === 'undefined') {
+        window.magenest = {};
+    }
+    if (typeof(window.magenest.affiliate) === 'undefined') {
+        window.magenest.affiliate = {};
+    }
+    window.magenest.affiliate.currentMenu = 5;
+
+</script>
+<form action="<?php echo $formAction ?>" method="post" autocomplete="off" id="form-affiliate-edit">
+    <input name="form_key" type="hidden" value="<?php echo $block->getFormKey();?>">
+<!--    <fieldset class="fieldset general">-->
+<!--        <legend class="legend">General</legend>-->
+<!--    </fieldset>-->
+    <fieldset class="fieldset withdraw">
+        <legend class="legend">Withdrawals</legend>
+        <div class="field">
+            <label class="label" for="payment_email"><span>Paypal Email</span></label>
+            <div class="control">
+                <input name="payment_email" oninvalid="this.setCustomValidity('Please fill in your Paypal email.')" id="paypal_email" value="<?php echo $paypalEmail ?>" title="Paypal Email" class="input-email"  type="email">
+            </div>
+        </div>
+    </fieldset>
+    <div class="clearfix"></div>
+    <div class="buttons-set">
+        <button class="action primary">Save</button>
+    </div>
+</form>
+

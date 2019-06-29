@@ -1,0 +1,51 @@
+.from-to {
+    width: 120px;
+    line-height: 2em;
+    cursor: default;
+    font-size: 1em;
+    padding-left: 10px;
+}
+
+div#date-filter label {
+    display: inline-block;
+    width: 50px;
+    position: relative;
+
+}
+
+i.fa.fa-calendar {
+    position: absolute;
+    top: -2.5px;
+    left: 154px;
+    font-size: x-large !important;
+}
+
+i.fa.fa-calendar:hover {
+    cursor: pointer;
+}
+
+td.affiliate_positive {
+    color: #0a0;
+    font-weight: bold;
+}
+
+td.affiliate_negative {
+    color: #f00;
+    font-weight: bold;
+}
+
+table#affiliate-transaction-table i.fa-chevron-down,
+table#affiliate-transaction-table i.fa-chevron-up {
+    display: none;
+    margin-left: 10px;
+}
+
+table#affiliate-transaction-table th.sortable {
+    cursor: pointer;
+}
+
+div.affiliate_balance{
+    background: #F5F5F5;
+    padding: 10px 30px;
+    float: right;
+}

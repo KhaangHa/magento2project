@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magenest\Affiliate\Api\CustomerRepositoryInterface"
+                type="Magenest\Affiliate\Model\CustomerRepository"/>
+    <preference for="Magenest\Affiliate\Api\Data\CustomerInterface" type="Magenest\Affiliate\Model\Customer"/>
+    <preference for="Magenest\Affiliate\Api\Data\CustomerSearchResultInterface"
+                type="Magenest\Affiliate\Model\CustomerSearchResult"/>
+
+    <preference for="Magenest\Affiliate\Api\TransactionRepositoryInterface"
+                type="Magenest\Affiliate\Model\TransactionRepository"/>
+    <preference for="Magenest\Affiliate\Api\Data\TransactionInterface" type="Magenest\Affiliate\Model\Transaction"/>
+    <preference for="Magenest\Affiliate\Api\Data\TransactionSearchResultInterface"
+                type="Magenest\Affiliate\Model\TransactionSearchResult"/>
+
+    <preference for="Magenest\Affiliate\Api\DownlineRepositoryInterface"
+                type="Magenest\Affiliate\Model\DownlineRepository"/>
+    <preference for="Magenest\Affiliate\Api\Data\DownlineInterface" type="Magenest\Affiliate\Model\Downline"/>
+    <preference for="Magenest\Affiliate\Api\Data\DownlineSearchResultInterface"
+                type="Magenest\Affiliate\Model\DownlineSearchResult"/>
+
+    <preference for="Magenest\Affiliate\Api\WithdrawRepositoryInterface"
+                type="Magenest\Affiliate\Model\WithdrawRepository"/>
+    <preference for="Magenest\Affiliate\Api\Data\WithdrawInterface" type="Magenest\Affiliate\Model\Withdraw"/>
+    <preference for="Magenest\Affiliate\Api\Data\WithdrawSearchResultInterface"
+                type="Magenest\Affiliate\Model\WithdrawSearchResult"/>
+
+    <preference for="Magenest\Affiliate\Api\OrderRepositoryInterface"
+                type="Magenest\Affiliate\Model\OrderRepository"/>
+    <preference for="Magenest\Affiliate\Api\Data\OrderInterface" type="Magenest\Affiliate\Model\Order"/>
+    <preference for="Magenest\Affiliate\Api\Data\OrderSearchResultInterface"
+                type="Magenest\Affiliate\Model\OrderSearchResult"/>
+
+
+    <!--grid-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+
+                <item name="affiliate_customer_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Customer\Grid\Collection
+                </item>
+                <item name="affiliate_withdraw_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Withdraw\Grid\Collection
+                </item>
+                <item name="affiliate_campaign_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Campaign\Grid\Collection
+                </item>
+                <item name="affiliate_banner_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Banner\Grid\Collection
+                </item>
+                <item name="affiliate_transaction_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Transaction\Grid\Collection
+                </item>
+                <item name="affiliate_log_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Log\Grid\Collection
+                </item>
+                <item name="affiliate_program_listing_data_source" xsi:type="string">
+                    Magenest\Affiliate\Model\ResourceModel\Program\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--customer-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Customer\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_customer</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Customer</argument>
+        </arguments>
+    </virtualType>
+    <!--end customer-->
+
+    <!--campaign-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Campaign\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_campaign</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Campaign</argument>
+        </arguments>
+    </virtualType>
+    <!--end campaign-->
+
+
+    <!--withdraw-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Withdraw\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_withdraw</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Withdraw</argument>
+        </arguments>
+    </virtualType>
+    <!--end withdraw-->
+
+    <!--banner-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Banner\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_banner</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Banner</argument>
+        </arguments>
+    </virtualType>
+    <!--end banner-->
+
+    <!--transaction-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Transaction\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_transaction</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Transaction
+            </argument>
+        </arguments>
+    </virtualType>
+    <!--end transaction-->
+
+    <!--    log-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Log\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_log</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Log</argument>
+        </arguments>
+    </virtualType>
+    <!--    end log-->
+
+    <!--    program-->
+    <virtualType name="Magenest\Affiliate\Model\ResourceModel\Program\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_affiliate_program</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Affiliate\Model\ResourceModel\Program</argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <!--end grid-->
+
+    <virtualType name="WithdrawGridFilterPool"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">
+                    Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter
+                </item>
+                <item name="fulltext" xsi:type="object">
+                    Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="WithdrawGridDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">
+                Magenest\Affiliate\Model\ResourceModel\Withdraw\Collection
+            </argument>
+            <argument name="filterPool" xsi:type="object" shared="false">WithdrawGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <preference for="Magento\Sales\Model\Service\InvoiceService" type="Magenest\Affiliate\Model\Order\Invoice\Totals"/>
+
+    <!--Image upload    -->
+    <type name="Magenest\Affiliate\Model\ImageUploader">
+        <arguments>
+            <!-- Temporary file stored in pub/media/movie/tmp/avatar -->
+            <argument name="baseTmpPath" xsi:type="string">affiliate/tmp/banner</argument>
+            <argument name="basePath" xsi:type="string">affiliate/banner</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--    End Image Upload-->
+</config>

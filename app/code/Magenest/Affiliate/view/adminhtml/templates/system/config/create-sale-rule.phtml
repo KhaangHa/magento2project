@@ -1,0 +1,74 @@
+<?php
+/**
+ * @var \Magenest\Affiliate\Block\Adminhtml\System\Config\CreateSaleRule $block
+ */
+?>
+<div class="actions actions-get-auth-token">
+    <div style="color: red" id="auth_token_result" class="message-validation hide"></div>
+    <button class="affiliate-create-sale-rule <?php echo $block->getAddClass();?>" type="button" id="<?php echo $block->getHtmlId() ?>">
+        <span id="span-for-active-button"><?php /* @escapeNotVerified */
+            echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+    <?php if($block->getRuleId()) :?>
+        <a class="sale-rule-edit" href="<?php echo $block->getEditLink();?>"><span>Edit</span></a>
+    <?php endif; ?>
+</div>
+<style>
+    .sale-rule-created:hover{
+        pointer-events: none;
+        color: white;
+    }
+    .sale-rule-created {
+        background-color: #eb5202 !important;
+        border: 1px #eb5202 solid !important;
+        cursor: default;
+        color:white;
+        pointer-events: none;
+        width: 150px;
+    }
+    .sale-rule-created span{
+        color:white;
+    }
+
+    .sale-rule-created:hover span {
+        color: white;
+    }
+    a.sale-rule-edit span{
+        display: inline-block;
+        background-color: #0fa7ff !important;
+        border: 1px #0fa7ff solid !important;
+        cursor: pointer;
+        color:white;
+        font-weight: 600;
+        line-height: 1.36;
+        padding: 0.6rem 1em 0.6rem;
+    }
+    a.sale-rule-edit{
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<script>
+    require(['jquery'], function ($) {
+        $('button.affiliate-create-sale-rule').click(function (event) {
+            var check = $('button.affiliate-create-sale-rule').hasClass('sale-rule-created');
+            if (check){
+                event.preventDefault();
+                return;
+            }
+            var url = '<?php echo $block->getUrl('affiliate/system_config/createSaleRule'); ?>';
+            jQuery.ajax({
+                type: "GET",
+                url: url,
+                showLoader: true,
+                success: function (response) {
+                    if (response.success) {
+                        $("span#span-for-active-button").html("Sale Rule was Created");
+
+                        $('button.affiliate-create-sale-rule').addClass("sale-rule-created");
+                    }
+                }
+            });
+        });
+    });
+</script>

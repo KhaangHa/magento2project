@@ -1,0 +1,82 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!--Global js and css-->
+        <script src="Magenest_Affiliate::js/default.js"/>
+        <css src="Magenest_Affiliate::css/default.css" />
+    </head>
+    <body>
+        <referenceContainer name="sidebar.additional" remove="true" />
+        <attribute name="class" value="affiliate"/>
+        <referenceContainer name="sidebar.main">
+            <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::html/collapsible.phtml"
+                   before="-" cacheable="false">
+                <arguments>
+                    <argument name="block_css" xsi:type="string">block-collapsible-nav affiliate</argument>
+                </arguments>
+                <block class="Magenest\Affiliate\Block\View\Element\Html\NavigationLink" name="customer_affiliate_navigation" before="-"
+                       template="Magenest_Affiliate::affiliate/navigation.phtml">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">nav items</argument>
+                    </arguments>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="home-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Affiliate Dashboard</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/dashboard</argument>
+                            <argument name="sortOrder" xsi:type="number">10</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="link-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Promotion Materials</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/promotion</argument>
+                            <argument name="sortOrder" xsi:type="number">20</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="transaction-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Transaction</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/transaction</argument>
+                            <argument name="sortOrder" xsi:type="number">30</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="withdraw-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Withdrawals</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/withdraw</argument>
+                            <argument name="sortOrder" xsi:type="number">35</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="lead-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Leads</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/leaddetail</argument>
+                            <argument name="sortOrder" xsi:type="number">40</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="statistic-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Statistic</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/statistic</argument>
+                            <argument name="sortOrder" xsi:type="number">45</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="commission-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Campaign</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/campaign</argument>
+                            <argument name="sortOrder" xsi:type="number">50</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="setting-affiliate">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Settings</argument>
+                            <argument name="path" xsi:type="string">affiliate/account/setting</argument>
+                            <argument name="sortOrder" xsi:type="number">55</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

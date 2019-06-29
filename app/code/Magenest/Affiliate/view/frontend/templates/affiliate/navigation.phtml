@@ -1,0 +1,185 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var $block \Magenest\Affiliate\Block\View\Element\Html\NavigationLink */
+$allowedMethods = $block->getWithdrawMethod();
+$allowedMethods = explode(',', $allowedMethods);
+$requestWithdrawUrl = $block->getUrl('affiliate/account/withdrawrequest');
+$settingUrl = $block->getUrl('affiliate/account/setting');
+$balance = $block->getBalance();
+$min = $block->getMinWithdraw();
+$max = ($block->getMaxWithdraw() > $balance) ? $balance : $block->getMaxWithdraw();
+$content = "Your available withdraw amount is between {$min} and {$max}.";
+if ((float)$balance < (float)$min){
+    $content = "Your balance is lower than the minimum withdraw condition amount.";
+}
+?>
+
+<ul class="nav items">
+    <?php if ($block->getIsAffiliate()) : ?>
+        <li class="nav item" id="item-balance"><strong><?php /* @escapeNotVerified */
+                echo __('Balance: '); ?><span></span> </strong></li>
+        <button class="btn affiliate-withdaw innav">Request Withdraw</button>
+
+        <?php echo $this->getChildHtml(); ?>
+    <?php else: ?>
+        <li class="nav item current"><strong>Affiliate Home</strong></li>
+    <?php endif; ?>
+</ul>
+<?php if ($block->getIsAffiliate()) : ?>
+
+<div style="display: none" class="request-affiliate-form" id="form-payment">
+    <fieldset class="fieldset withdraw" >
+        <div class="field required">
+            <label class="label" for="payment_method"><span>Payment Method</span></label>
+            <div class="control">
+                <select id="payment_method" name="payment_method" aria-required="true">
+                    <?php foreach ($allowedMethods as $method) : ?>
+                        <option value="<?php echo strtoupper($method) ?>">
+                            <?php echo strtoupper($method) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+    <input hidden id="payment_method" value="<?php ?>"/>
+    <form action="<?php echo $requestWithdrawUrl; ?>" method="post" autocomplete="off" id="paypal">
+        <fieldset class="fieldset withdraw" >
+            <input hidden name="payment" value="PAYPAL"/>
+            <div class="field required">
+                <label class="label " for="paypal-email"><span>PayPal Email</span></label>
+                <div class="control">
+                    <input type="text" id="paypal-email"  required value="<?php echo $block->getCustomer()->getPaypalEmail(); ?>"
+                           title="Payment Email" name="paypal_email" oninvalid="this.setCustomValidity('Please setup your Paypal email in Setting Tab.')" class="input-text" style="cursor: not-allowed">
+                    <a href="<?php echo $settingUrl ?>">Go to Setting</a>
+                </div>
+            </div>
+            <div class="field required amount-withdraw">
+                <label class="label" for="affiliate-amount-withdraw">Enter Amount: </label>
+                <div class="control">
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                    <input type="number" oninvalid="this.setCustomValidity('<?PHP echo $content; ?>')" required min="<?php echo $min; ?>" max="<?php echo $max; ?>"
+                           class="affiliate-amount-withdraw"
+                           id="affiliate-amount-withdraw" name="amount"/>
+                    <div class="tip">
+                        <a href="#"
+                           alt="<?php echo $content; ?>"
+                           class="tooltip"><span id="tip-button">?</span></a>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+        <button type="submit" class="action primary">Request</button>
+    </form>
+    <form action="<?php echo $requestWithdrawUrl; ?>" method="post" autocomplete="off" style="display: none" id="bank_transfer">
+        <fieldset class="fieldset">
+            <input hidden name="payment" value="OFFLINE"/>
+            <div  class="field required field-input-left">
+                <label class="label" for="bank-name"><span>Bank Name</span></label>
+                <div class="control">
+                    <input name="bank_name" id="bank-name" type="text" required/>
+                </div>
+            </div>
+            <div  class="field required field-input-right">
+                <label class="label" for="bank_account"><span>Bank Account Number</span></label>
+                <div class="control">
+                    <input type="text" id="bank-account" title="Bank account" name="bank_account" required/>
+                </div>
+            </div>
+            <div  class="field required field-input-left">
+                <label class="label" for="bank-account_name"><span>Bank Account Name</span></label>
+                <div class="control">
+                    <input name="bank_count_name" id="bank-account_name" type="text" required/>
+                </div>
+            </div>
+            <div  class="field field-input-right">
+                <label class="label" for="routing-code"><span>Bank Routing Code</span></label>
+                <div class="control">
+                    <input name="routing_code" id="routing-code" type="text" >
+                </div>
+            </div>
+            <div  class="field " >
+                <label class="label" for="swift"><span>Bank SWIFT Code</span></label>
+                <div class="control">
+                    <input name="swift" id="swift" type="text">
+                </div>
+            </div>
+            <div  class="field ">
+                <label class="label" for="address"><span>Address</span></label>
+                <div class="control">
+                    <input name="address" id="address" type="text"  />
+                </div>
+            </div>
+            <div class="field required amount-withdraw">
+                <label class="label" for="affiliate-amount-withdraw">Enter Amount: </label>
+                <div class="control">
+                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                    <input type="number" oninvalid="this.setCustomValidity('<?PHP echo $content; ?>')" required min="<?php echo $min; ?>" max="<?php echo $max; ?>"
+                           class="affiliate-amount-withdraw"
+                           id="affiliate-amount-withdraw" name="amount"/>
+                    <div class="tip">
+                        <a href="#"
+                           alt="<?php echo $content; ?>"
+                           class="tooltip"><span id="tip-button">?</span></a>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+        <button type="submit" class="action primary">Request</button>
+    </form>
+</div>
+<?php endif; ?>
+
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        'use strict';
+        var currentMenu = parseInt(window.magenest.affiliate.currentMenu);
+        var currentBalance = '<?php echo $balance;?>';
+        var baseCurrencySymbol = '<?php echo $block->getBaseCurrencySymbol();?>';
+        $('div.affiliate li.nav.item:first-child span').html(baseCurrencySymbol + ' ' + currentBalance);
+        $('div.affiliate li.nav.item:nth-of-type(' + (currentMenu + 1) + ')').addClass('current');
+        var cur_val = $('div.affiliate li.nav.item.current > a').html();
+        if (typeof (cur_val) !== "undefined") {
+            $('div.affiliate li.nav.item:nth-of-type(' + (currentMenu + 1) + ')').html('<strong>' + cur_val + '</strong>');
+        }
+
+        $('#paypal-email').on('keydown paste', function(e){
+            e.preventDefault();
+        });
+        var paymentMethod = $('#payment_method').val();
+        console.log(paymentMethod);
+        if(paymentMethod==='PAYPAL'){
+            console.log("paypal");
+            $('#paypal').show();
+            $('#bank_transfer').hide();
+        }
+        if(paymentMethod=="OFFLINE"){
+            $('#paypal').hide();
+            $('#bank_transfer').show();
+        }
+//        $('form_').submit(function(){
+//            $(this).find(':submit').attr('disabled','disabled');
+//        });
+        $('#payment_method').on('change', function(){
+           var paymentMethod = $('#payment_method').val();
+            console.log(paymentMethod);
+           if(paymentMethod==='PAYPAL'){
+               console.log("paypal");
+               $(this).closest('#form-payment').find('#paypal').show();
+               $(this).closest('#form-payment').find('#bank_transfer').hide();
+           }
+           if(paymentMethod=="OFFLINE"){
+               console.log("bank transfer");
+               $(this).closest('#form-payment').find('#paypal').hide();
+               $(this).closest('#form-payment').find('#bank_transfer').show();
+           }
+        });
+    });
+</script>

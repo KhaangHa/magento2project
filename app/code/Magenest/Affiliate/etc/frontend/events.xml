@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="magenest_affiliate_customer_register_success" instance="Magenest\Affiliate\Observer\Customer\Register\Success"/>
+    </event>
+    <!--<event name="controller_action_predispatch">-->
+        <!--<observer name="magenest_affiliate_get_parameter" instance="Magenest\Affiliate\Observer\Param"/>-->
+    <!--</event>-->
+
+</config>

@@ -47,7 +47,6 @@ class Hello extends \Magento\Framework\View\Element\Template
             'main_table.director_id = director.director_id',
             ['director name' => 'name']
         );
-        xdebug_break();
         $collection->getSelect()->group('main_table.movie_id');
        // echo $collection->getSelect()->__toString();
         return $collection;
